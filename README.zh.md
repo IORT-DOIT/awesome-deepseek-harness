@@ -178,6 +178,7 @@ DeepSeek Harness 是 DeepSeek AI 开源的 agent harness。它的核心哲学是
 | [yeruizhi/dsh-ask-user-timeout](https://github.com/yeruizhi/dsh-ask-user-timeout) | 给 `ask_user_question` 加有界等待：无人渲染提问时（页签关闭 / 切后台 / mux 掉线），到可配置超时（默认 10 分钟）后返回结构化、模型可见的 `ASK_TIMEOUT`，循环不再无限“进行中”；复用官方 `timeout-policy` 守卫的 `deadline()` 原语（`dsh plugin --profile web add git+https://github.com/yeruizhi/dsh-ask-user-timeout.git`） | 0 |
 | [zhengjy01/dsh-wechat-clawbot](https://github.com/zhengjy01/dsh-wechat-clawbot) | 微信 ClawBot 桥接：扫码登录悬浮球把消息桥接到 agent 会话，复用 context_token 支持窗口外主动推送（lubaiUwU/DSH-WeChatClawBot 的维护分支；`dsh plugin --profile web add dsh-wechat-clawbot`）。 | 0 |
 | [0xRabit/dsh-crypto-portfolio](https://github.com/0xRabit/dsh-crypto-portfolio) | 自托管加密资产仪表盘：BTC、EVM（73 条链）、Solana、狗狗币、艾达币、Hyperliquid、五家交易所与代币化股票统一视图，含可分享 PNG 卡片、可调阈值的资产健康度报告、逐数据源连通性测试与零依赖趋势图（`dsh plugin --profile web add dsh-crypto-portfolio` 安装） | 2 |
+| [shiyan688/dsh-novel-craft](https://github.com/shiyan688/dsh-novel-craft) | 小说创作工作台：读候选稿点 👍/👎，标注被压成可复用的写作规律，只有规律进写稿上下文（`dsh plugin --profile web add dsh-novel-craft` 安装） | 5 |
 
 ### 📚 Skills 与技能包
 
