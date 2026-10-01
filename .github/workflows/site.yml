@@ -62,5 +62,24 @@ jobs:
             exit 0
           fi
           git commit -m "chore(site): rebuild GitHub Page [skip ci]"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          # 另一个 run 可能在本 run 构建期间已经推了 docs/，导致 rebase 冲突。
+          # docs/ 完全由 README.md 生成，冲突时直接回到 main 最新重新构建即可。
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "::warning::docs/ push raced with another run (attempt $attempt), rebuilding from main"
+            git rebase --abort || true
+            git fetch origin main
+            git reset --hard FETCH_HEAD
+            node site/build.mjs
+            git add docs/
+            if git diff --cached --quiet; then
+              echo "Site already current on main — nothing to push."
+              exit 0
+            fi
+            git commit -m "chore(site): rebuild GitHub Page [skip ci]"
+          done
+          echo "::error::could not push docs/ after 3 attempts"
+          exit 1
